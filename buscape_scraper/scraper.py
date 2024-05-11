@@ -1,7 +1,7 @@
 from parsel import Selector
 import httpx
 
-class Buscape:
+class BuscapeScraper:
     def __init__(self) -> None:
         pass
     
@@ -30,7 +30,7 @@ class Buscape:
             product = {
                 "title": product_selector.css("[class^='ProductCard_ProductCard_Name'] h2::text").get(),
                 "image_url": product_selector.css("[class^='ProductCard_ProductCard_Image'] img[loading='lazy']::attr(src)").get(),
-                "price": Buscape._string_price_to_number(product_selector.css("[data-testid='product-card::price']::text").get()),
+                "price": BuscapeScraper._string_price_to_number(product_selector.css("[data-testid='product-card::price']::text").get()),
                 "page_url": product_selector.css("::attr(href)").get()
             }
 
@@ -50,7 +50,7 @@ class Buscape:
             product = {
                 "title": product_selector.css("[class^='ProductCard_ProductCard_Name'] h2::text").get(),
                 "image_url": product_selector.css("[class^='ProductCard_ProductCard_Image'] img::attr(src)").get(),
-                "price": Buscape._string_price_to_number(product_selector.css("[data-testid='product-card::price']::text").get()),
+                "price": BuscapeScraper._string_price_to_number(product_selector.css("[data-testid='product-card::price']::text").get()),
                 "page_url": "https://www.buscape.com.br" + product_selector.css("::attr(href)").get()
             }
 
